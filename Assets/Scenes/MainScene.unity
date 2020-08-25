@@ -170,8 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _MinionPrefab: {fileID: 4844157888605985915, guid: 6716e99ddec408a4c8a8039569473e17,
     type: 3}
-  _Player: {fileID: 184445645}
-  _Grid: {fileID: 979595797}
+  _Player: {fileID: 850838771}
   _SpawnTimer: 5
   _SpawnPoint: {fileID: 570694022}
 --- !u!4 &193685088
@@ -521,6 +520,7 @@ GameObject:
   - component: {fileID: 979595796}
   - component: {fileID: 979595795}
   - component: {fileID: 979595797}
+  - component: {fileID: 979595798}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -566,6 +566,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4a6113fa72af324eb066e95f4712969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _StartPos: {x: -1, y: -1, z: 0}
+  _GoalPos: {x: 0, y: 0, z: 0}
+--- !u!114 &979595798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979595794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2f6bfc0e187e24e8fcd7d157ef3cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Tilemap: {fileID: 1095247601}
@@ -2972,7 +2986,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1132682626}
-  - component: {fileID: 1132682625}
   m_Layer: 0
   m_Name: AStar
   m_TagString: Untagged
@@ -2980,25 +2993,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1132682625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132682623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb971eff81e62804988ec710f648d1c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Grid: {fileID: 979595797}
-  _Camera: {fileID: 519420031}
-  _LayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  _StartPos: {x: -6, y: 3, z: 0}
-  _GoalPos: {x: 2, y: 2, z: 0}
 --- !u!4 &1132682626
 Transform:
   m_ObjectHideFlags: 0

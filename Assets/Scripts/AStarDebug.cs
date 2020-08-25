@@ -33,8 +33,9 @@ public class AStarDebug : MonoBehaviour
 
     private List<GameObject> _DebugObjects = new List<GameObject>();
 
-    private static AStarDebug _Instance;
+    private bool _IsDebug = false;
 
+    private static AStarDebug _Instance;
     public static AStarDebug Instance
     {
         get
@@ -48,8 +49,15 @@ public class AStarDebug : MonoBehaviour
         }
     }
 
-    public void CreateTiles(HashSet<Node> openNodes, HashSet<Node> closedNodes, Dictionary<Vector3Int, Node> allNodes, Vector3Int start, Vector3Int goal, Stack<Vector3Int> path = null)
+    public void CreateTiles(HashSet<Node> openNodes, HashSet<Node> closedNodes, NodeGrid nodeGrid, Vector3Int start, Vector3Int goal, Stack<Vector3Int> path = null)
     {
+        if (!_IsDebug)
+        {
+            return;
+        }
+
+        ClearObjects();
+
         foreach (Node node in openNodes)
         {
             ColorTile(node.Position, _OpenColor);
@@ -71,6 +79,7 @@ public class AStarDebug : MonoBehaviour
         ColorTile(start, _StartColor);
         ColorTile(goal, _GoalColor);
 
+        Dictionary<Vector3Int, Node> allNodes = nodeGrid.AllNodes;
         foreach (KeyValuePair<Vector3Int, Node> node in allNodes)
         {
             if (node.Value.Parent != null)
@@ -93,9 +102,28 @@ public class AStarDebug : MonoBehaviour
         }
     }
 
-    private void GenerateDebugText(Node node, DebugText debugText)
+    // Update is called once per frame
+    void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _IsDebug = !_IsDebug;
 
+            if (!_IsDebug)
+            {
+                ClearObjects();
+            }
+        }
+    }
+
+    private void ClearObjects()
+    {
+        foreach (GameObject obj in _DebugObjects)
+        {
+            Destroy(obj);
+        }
+
+        _Tilemap.ClearAllTiles();
     }
 
     public void ColorTile(Vector3Int pos, Color color)

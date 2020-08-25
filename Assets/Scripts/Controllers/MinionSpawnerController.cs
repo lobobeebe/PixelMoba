@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class MinionSpawnerController : MonoBehaviour
 {
@@ -8,9 +7,6 @@ public class MinionSpawnerController : MonoBehaviour
 
     [SerializeField]
     private Transform _Player = default;
-
-    [SerializeField]
-    private PathingGrid _Grid = default;
 
     [SerializeField]
     private float _SpawnTimer = 5;
@@ -35,9 +31,9 @@ public class MinionSpawnerController : MonoBehaviour
 
     void Update()
     {
-        if (Time.time - _LastSpawnTime > _SpawnTimer && _Grid != null && _Grid.Tilemap != null && _SpawnPoint != null)
+        if (Time.time - _LastSpawnTime > _SpawnTimer && _SpawnPoint != null)
         {
-            Vector3 position = _Grid.Tilemap.GetCellCenterWorld(_Grid.Tilemap.WorldToCell(_SpawnPoint.position));
+            Vector3 position = _SpawnPoint.position;
             position.z = -1;
 
             GameObject minion = Instantiate(_MinionPrefab, position, Quaternion.identity);
