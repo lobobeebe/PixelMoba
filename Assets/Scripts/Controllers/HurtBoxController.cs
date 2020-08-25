@@ -6,7 +6,7 @@ using UnityEngine;
 public class HurtBoxController : MonoBehaviour
 {
     [SerializeField]
-    private Health _Health;
+    private Health _Health = default;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
