@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class DeleteAfterTime : MonoBehaviour
+public class DestroyAfterTime : MonoBehaviour
 {
     public float DeleteAfterSeconds = 5;
 
