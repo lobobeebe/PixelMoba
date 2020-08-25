@@ -30,18 +30,25 @@ public class GunController : MonoBehaviour
     {
         if (IsFiring && Time.time >= _LastShotTimeSeconds + _SecondsPerBullets)
         {
-            float angle = Mathf.Atan2(Target.y - transform.position.y, Target.x - transform.position.x);
-            if (_BulletPrefab != null)
-            {
-                GameObject bullet = Instantiate(_BulletPrefab, transform.position, Quaternion.Euler(0, 0, angle * 180 / Mathf.PI));
-                bullet.tag = tag;
-            }
-            else
-            {
-                Debug.LogError("No Bullet Prefab");
-            }
-
+            CreateBullet();
             _LastShotTimeSeconds = Time.time;
+        }
+    }
+
+    private void CreateBullet()
+    {
+        float angle = Mathf.Atan2(Target.y - transform.position.y, Target.x - transform.position.x);
+        if (_BulletPrefab != null)
+        {
+            GameObject bullet = Instantiate(_BulletPrefab, transform.position, Quaternion.Euler(0, 0, angle * 180 / Mathf.PI));
+            bullet.tag = tag;
+
+            HitBoxController bulletHitBox = bullet.GetComponent<HitBoxController>();
+            bulletHitBox.HitTags = _HitTags;
+        }
+        else
+        {
+            Debug.LogError("No Bullet Prefab");
         }
     }
 }

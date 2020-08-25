@@ -236,7 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _MinionPrefab: {fileID: 4844157888605985915, guid: 6716e99ddec408a4c8a8039569473e17,
     type: 3}
-  _Player: {fileID: 850838771}
+  _Player: {fileID: 2134662710}
+  _PlayerBase: {fileID: 850838771}
   _SpawnTimer: 4
   _SpawnPoint: {fileID: 791906322}
 --- !u!4 &791906322 stripped
@@ -3139,6 +3140,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 235, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &2134662710 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 971437273177105928, guid: da6ba90b2e4252a42b1649a93a6ae6dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 971437273351834821}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &971437273351834821
 PrefabInstance:
   m_ObjectHideFlags: 0

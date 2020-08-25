@@ -9,6 +9,9 @@ public class MinionSpawnerController : MonoBehaviour
     private Transform _Player = default;
 
     [SerializeField]
+    private Transform _PlayerBase = default;
+
+    [SerializeField]
     private float _SpawnTimer = 5;
 
     [SerializeField]
@@ -20,7 +23,12 @@ public class MinionSpawnerController : MonoBehaviour
     {
         if (_Player == null)
         {
-            Debug.LogError("PlayerTransform is null. Minions can't follow player.");
+            Debug.LogError("Player is null. Minions can't attack player.");
+        }
+
+        if (_PlayerBase == null)
+        {
+            Debug.LogError("Player Base is null. Minions can't move to player base.");
         }
 
         if (_SpawnPoint == null)
@@ -38,7 +46,8 @@ public class MinionSpawnerController : MonoBehaviour
 
             GameObject minion = Instantiate(_MinionPrefab, position, Quaternion.identity);
             MinionController controller = minion.GetComponent<MinionController>();
-            controller.EnemyBaseTransform = _Player;
+            controller.PlayerTransform = _Player;
+            controller.EnemyBaseTransform = _PlayerBase;
 
             _LastSpawnTime = Time.time;
         }
