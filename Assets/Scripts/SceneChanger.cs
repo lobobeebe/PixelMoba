@@ -4,13 +4,13 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
     [SerializeField]
-    private Health _PlayerHealth;
+    private Health _PlayerHealth = default;
 
     [SerializeField]
-    private Health _PlayerBaseHealth;
+    private Health _PlayerBaseHealth = default;
 
     [SerializeField]
-    private Health _EnemyBaseHealth;
+    private Health _EnemyBaseHealth = default;
 
     private void Start()
     {
