@@ -3,20 +3,41 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public Health PlayerHealth;
+    [SerializeField]
+    private Health _PlayerHealth;
+
+    [SerializeField]
+    private Health _PlayerBaseHealth;
+
+    [SerializeField]
+    private Health _EnemyBaseHealth;
 
     private void Start()
     {
-        if (PlayerHealth == null)
+        if (_PlayerHealth == null)
         {
             Debug.LogError("PlayerHealth null. Cannot change scenes.");
             return;
         }
 
-        PlayerHealth.OnDeath += OnPlayerDeath;
+        if (_PlayerBaseHealth == null)
+        {
+            Debug.LogError("PlayerBaseHealth null. Cannot change scenes.");
+            return;
+        }
+
+        if (_EnemyBaseHealth == null)
+        {
+            Debug.LogError("EnemyBaseHealth null. Cannot change scenes.");
+            return;
+        }
+
+        _PlayerHealth.OnDeath += LoadStartMenu;
+        _PlayerBaseHealth.OnDeath += LoadStartMenu;
+        _EnemyBaseHealth.OnDeath += LoadStartMenu;
     }
     
-    void OnPlayerDeath()
+    void LoadStartMenu()
     {
         SceneManager.LoadScene("StartMenu", LoadSceneMode.Single);
     }

@@ -246,12 +246,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1295375289}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &791906323 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7791268807577565348, guid: e9b1db7001b55934ea6132718d93fae9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1295375289}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791906319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b966e560dec8d44eaa4e0fc66bad4c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &850838771 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2101372547800378350, guid: e9b1db7001b55934ea6132718d93fae9,
     type: 3}
   m_PrefabInstance: {fileID: 2101372548109365021}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &850838772 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7791268807577565348, guid: e9b1db7001b55934ea6132718d93fae9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2101372548109365021}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b966e560dec8d44eaa4e0fc66bad4c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &979595794
 GameObject:
   m_ObjectHideFlags: 0
@@ -2908,7 +2932,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56564a9201f2ef4ea190568f51bede1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerHealth: {fileID: 184445649}
+  _PlayerHealth: {fileID: 184445649}
+  _PlayerBaseHealth: {fileID: 850838772}
+  _EnemyBaseHealth: {fileID: 791906323}
 --- !u!1001 &1295375289
 PrefabInstance:
   m_ObjectHideFlags: 0
