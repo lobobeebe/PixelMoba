@@ -3,8 +3,11 @@ using UnityEngine.Tilemaps;
 
 public class MinionSpawnerController : MonoBehaviour
 {
-    public GameObject MinionPrefab;
-    public Transform Player;
+    [SerializeField]
+    private GameObject _MinionPrefab = default;
+
+    [SerializeField]
+    private Transform _Player = default;
 
     [SerializeField]
     private PathingGrid _Grid = default;
@@ -12,34 +15,34 @@ public class MinionSpawnerController : MonoBehaviour
     [SerializeField]
     private float _SpawnTimer = 5;
 
+    [SerializeField]
+    private Transform _SpawnPoint = default;
+    
     private float _LastSpawnTime = 0;
 
     private void Start()
     {
-        if (Player == null)
+        if (_Player == null)
         {
             Debug.LogError("PlayerTransform is null. Minions can't follow player.");
+        }
+
+        if (_SpawnPoint == null)
+        {
+            Debug.LogError("SpawnPoint is null. Minions cannot spawn.");
         }
     }
 
     void Update()
     {
-        if (Time.time - _LastSpawnTime > _SpawnTimer && _Grid != null && _Grid.Tilemap != null)
+        if (Time.time - _LastSpawnTime > _SpawnTimer && _Grid != null && _Grid.Tilemap != null && _SpawnPoint != null)
         {
-            Vector3Int gridSize = _Grid.Tilemap.cellBounds.size;
-            Vector3Int gridSizeMin = _Grid.Tilemap.cellBounds.min;
+            Vector3 position = _Grid.Tilemap.GetCellCenterWorld(_Grid.Tilemap.WorldToCell(_SpawnPoint.position));
+            position.z = -1;
 
-            Vector3Int randomGridCell = new Vector3Int(gridSizeMin.x + (int)(Random.value * gridSize.x), gridSizeMin.y + (int)(Random.value * gridSize.y), 0);
-            while (!_Grid.IsOpen(randomGridCell))
-            {
-                randomGridCell = new Vector3Int(gridSizeMin.x + (int)(Random.value * gridSize.x), gridSizeMin.y + (int)(Random.value * gridSize.y), 0);
-            }
-
-            Vector3 position = _Grid.Tilemap.GetCellCenterWorld(randomGridCell);
-
-            GameObject minion = Instantiate(MinionPrefab, position, Quaternion.identity);
+            GameObject minion = Instantiate(_MinionPrefab, position, Quaternion.identity);
             MinionController controller = minion.GetComponent<MinionController>();
-            controller.PlayerTransform = Player;
+            controller.PlayerTransform = _Player;
 
             _LastSpawnTime = Time.time;
         }
