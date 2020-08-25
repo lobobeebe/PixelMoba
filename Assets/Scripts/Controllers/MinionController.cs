@@ -4,6 +4,9 @@ using UnityEngine;
 public class MinionController : MonoBehaviour
 {
     [SerializeField]
+    private GameObject _BulletPrefab;
+
+    [SerializeField]
     private float _MoveSpeed = 3;
 
     private Rigidbody2D _Rigidbody;
@@ -11,13 +14,13 @@ public class MinionController : MonoBehaviour
 
     private Queue<Vector3> _PlannedLocations = null;
 
-    private Transform _PlayerTransform;
-    public Transform PlayerTransform
+    private Transform _EnemyBaseTransform;
+    public Transform EnemyBaseTransform
     {
-        get => _PlayerTransform;
+        get => _EnemyBaseTransform;
         set
         {
-            _PlayerTransform = value;
+            _EnemyBaseTransform = value;
             InvalidatePath();
         }
     }
@@ -47,11 +50,21 @@ public class MinionController : MonoBehaviour
         _Animator.SetFloat("Speed", _Rigidbody.velocity.magnitude);
     }
 
+    private void Update()
+    {
+        // TODO: Make this line of sight
+        // Stop moving towards base if within range
+        if ((transform.position - _EnemyBaseTransform.position).magnitude < 3)
+        {
+            _PlannedLocations.Clear();
+        }
+    }
+
     void InvalidatePath()
     {
-        if (_PlayerTransform != null)
+        if (_EnemyBaseTransform != null)
         {
-            _PlannedLocations = PathMaker.Instance.GetWorldPath(transform.position, _PlayerTransform.position);
+            _PlannedLocations = PathMaker.Instance.GetWorldPath(transform.position, _EnemyBaseTransform.position);
         }
     }
 }

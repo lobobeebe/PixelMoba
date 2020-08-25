@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 public class HurtBoxController : MonoBehaviour
@@ -8,11 +6,8 @@ public class HurtBoxController : MonoBehaviour
     [SerializeField]
     private Health _Health = default;
 
-    private void OnTriggerEnter2D(Collider2D col)
+    public void DealDamage(float damage)
     {
-        if (col.tag == "Enemy")
-        {
-            _Health.DealDamage(1);
-        }
+        _Health.DealDamage(damage);
     }
 }

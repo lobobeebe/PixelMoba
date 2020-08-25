@@ -38,13 +38,10 @@ public class Health : MonoBehaviour
                 _CurrentHealth = value;
             }
 
+            OnHealthChanged?.Invoke(_CurrentHealth);
             if (_CurrentHealth == 0)
             {
                 OnDeath?.Invoke();
-            }
-            else
-            {
-                OnHealthChanged?.Invoke(_CurrentHealth);
             }
         }
     }

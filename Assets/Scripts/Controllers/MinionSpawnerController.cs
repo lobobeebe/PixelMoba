@@ -38,7 +38,7 @@ public class MinionSpawnerController : MonoBehaviour
 
             GameObject minion = Instantiate(_MinionPrefab, position, Quaternion.identity);
             MinionController controller = minion.GetComponent<MinionController>();
-            controller.PlayerTransform = _Player;
+            controller.EnemyBaseTransform = _Player;
 
             _LastSpawnTime = Time.time;
         }

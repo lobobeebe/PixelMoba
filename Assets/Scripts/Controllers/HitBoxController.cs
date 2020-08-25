@@ -6,13 +6,20 @@ public class HitBoxController : MonoBehaviour
 {
     [SerializeField]
     private List<string> _HitTags = default;
-    
-    void OnTriggerEnter2D(Collider2D col)
+
+    [SerializeField]
+    private float _Damage = 1;
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_HitTags != null && _HitTags.Contains(col.gameObject.tag))
+        if (collision != null && collision.isTrigger && _HitTags.Contains(collision.tag))
         {
-            Destroy(col.gameObject);
-            Destroy(gameObject);
+            HurtBoxController hurtBox = collision.GetComponent<HurtBoxController>();
+
+            if (hurtBox != null)
+            {
+                hurtBox.DealDamage(_Damage);
+            }
         }
     }
 }
