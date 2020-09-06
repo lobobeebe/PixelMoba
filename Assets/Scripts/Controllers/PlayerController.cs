@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
         // Pass in the current velocity of the RigidBody2D
         // The speed parameter of the Animator now knows
         // how fast the player is moving and responds accordingly
+        _Animator.SetFloat("XSpeed", _RigidBody.velocity.x);
+        _Animator.SetFloat("YSpeed", _RigidBody.velocity.y);
         _Animator.SetFloat("Speed", _RigidBody.velocity.magnitude);
     }
 
